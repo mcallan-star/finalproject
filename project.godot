@@ -26,7 +26,7 @@ AudioManager="*res://Scenes/Managers/AudioManager.tscn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
@@ -53,4 +53,6 @@ Jump={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.105469, 0.457031, 0.730469, 1)
