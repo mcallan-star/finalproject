@@ -67,17 +67,33 @@ func player_animations():
 		if abs(velocity.x) > 0:
 			particle_trails.emitting = true
 			player_sprite.play("Walk", 1.5)
+			if %Gun.flip_h:
+				%GunAnimPlayer.play("RESET_flipped")
+			else:
+				%GunAnimPlayer.play("RESET")
 		else:
 			player_sprite.play("Idle")
+			if %Gun.flip_h:
+				%GunAnimPlayer.play("RESET_flipped")
+			else:
+				%GunAnimPlayer.play("RESET")
 	else:
 		player_sprite.play("Jump")
+		if %Gun.flip_h:
+			%GunAnimPlayer.play("gun_jump_flipped")
+		else:
+			%GunAnimPlayer.play("gun_jump_normal")
 
 # Flip player sprite based on X velocity
 func flip_player():
 	if velocity.x < 0: 
 		player_sprite.flip_h = true
+		%Gun.flip_h = true
+		%GunAnimPlayer.play('RESET_flipped')
 	elif velocity.x > 0:
 		player_sprite.flip_h = false
+		%Gun.flip_h = false
+		%GunAnimPlayer.play('RESET')
 
 # Tween Animations
 func death_tween():
