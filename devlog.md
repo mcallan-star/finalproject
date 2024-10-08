@@ -26,6 +26,13 @@
 ### 2024-10-1 - : This is the first day of using godot to make my game.
 *Item 1 - I am currently going back to the3 tutorial and figuring out how I can start with my template.
 
+### 2024-10-8 - : This is the first day of using godot to make my game.
+*Item 1 - I am currently going back to the3 tutorial and figuring out how I can start with my template.
+*I am adding background music and a gun sprite to my game using the 2D side-scroller template          
+
+
+
+
 
   You can learn more about formatting using markdown.
 https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
