@@ -28,7 +28,24 @@
 
 ### 2024-10-8 - : This is the first day of using godot to make my game.
 *Item 1 - I am currently going back to the3 tutorial and figuring out how I can start with my template.
-*I am adding background music and a gun sprite to my game using the 2D side-scroller template          
+*I am adding background music and a gun sprite to my game using the 2D side-scroller template     
+
+
+### 2024-10-10  1 hr
+*Item 1- found my spritesheet for the ghosts and slimes
+*Item 2- added them to assets/spritesheet/
+       
+
+
+### 2024-10-21 5 hr
+*Item 1 - added the core mechanic with the slimes and the bullets  
+*Item 2 - added the ghost transformation after the health depleted
+*Item 3 - added To - dos to my trello board to be implemented piece meal.
+
+### 2024-10-21 
+*Item 1 
+
+
 
 
 
