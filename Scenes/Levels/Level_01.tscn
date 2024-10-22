@@ -98,6 +98,7 @@ unique_name_in_owner = true
 position = Vector2(174, 383)
 
 [node name="TutorialText" type="Node2D" parent="."]
+visible = false
 
 [node name="Movement" type="Label" parent="TutorialText"]
 offset_left = 264.0
@@ -171,4 +172,4 @@ theme_override_font_sizes/font_size = 32
 text = "x 3"
 
 [node name="enemy" parent="." instance=ExtResource("10_w8i85")]
-position = Vector2(723, 211)
+position = Vector2(882, 326)

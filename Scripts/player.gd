@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var gravity : float = 30
 @export var max_jump_count : int = 2
 var jump_count : int = 2
+var ugly_arm_offset : float = 1.10514855384827
 
 @export_category("Toggle Functions") # Double jump feature is disable by default (Can be toggled from inspector)
 @export var double_jump : = false
@@ -18,9 +19,13 @@ var is_grounded : bool = false
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
+@onready var bullet_scene = preload("res://Scenes/Prefabs/bullet.tscn")
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 
+func _ready() -> void:
+	GameManager.restore_ghosts(self)
+	
 func _process(_delta):
 	# Calling functions
 	movement()
@@ -63,37 +68,38 @@ func jump():
 func player_animations():
 	particle_trails.emitting = false
 	
+	var mouse_position = get_viewport().get_mouse_position()
+	
+	var direction =  mouse_position - %Arm.global_position
+	var angle = direction.angle()
+	
+	%Arm.rotation = angle + ugly_arm_offset
+	
+	if Input.is_action_just_pressed("Shoot"):
+		spawn_bullet()
+	
 	if is_on_floor():
 		if abs(velocity.x) > 0:
 			particle_trails.emitting = true
 			player_sprite.play("Walk", 1.5)
-			if %Gun.flip_h:
-				%GunAnimPlayer.play("RESET_flipped")
-			else:
-				%GunAnimPlayer.play("RESET")
 		else:
 			player_sprite.play("Idle")
-			if %Gun.flip_h:
-				%GunAnimPlayer.play("RESET_flipped")
-			else:
-				%GunAnimPlayer.play("RESET")
 	else:
 		player_sprite.play("Jump")
-		if %Gun.flip_h:
-			%GunAnimPlayer.play("gun_jump_flipped")
-		else:
-			%GunAnimPlayer.play("gun_jump_normal")
+
+func spawn_bullet():
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = %Gun.global_position
+	bullet.rotation = %Arm.rotation - ugly_arm_offset
+	get_parent().add_child(bullet)
+	
 
 # Flip player sprite based on X velocity
 func flip_player():
 	if velocity.x < 0: 
 		player_sprite.flip_h = true
-		%Gun.flip_h = true
-		%GunAnimPlayer.play('RESET_flipped')
 	elif velocity.x > 0:
 		player_sprite.flip_h = false
-		%Gun.flip_h = false
-		%GunAnimPlayer.play('RESET')
 
 # Tween Animations
 func death_tween():
